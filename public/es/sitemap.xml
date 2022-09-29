@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+    
+      <url>
+            <loc>http://example.org/</loc>
+            <lastmod>2022-09-28T01:21:03+02:00</lastmod>
+            <changefreq>daily</changefreq>
+            <priority>0.5</priority>
+            <xhtml:link
+              rel="alternate"
+              hreflang="en"
+              href="http://example.org/en/"
+              />
+            <xhtml:link
+              rel="alternate"
+              hreflang="es"
+              href="http://example.org/"
+              />
+          </url>
+    
+  
+    
+      <url>
+            <loc>http://example.org/posts/</loc>
+            <lastmod>2022-09-28T01:21:03+02:00</lastmod>
+            <changefreq>daily</changefreq>
+            <priority>0.5</priority>
+          </url>
+    
+  
+    
+      <url>
+            <loc>http://example.org/posts/my-first-post/</loc>
+            <lastmod>2022-09-28T01:21:03+02:00</lastmod>
+            <changefreq>daily</changefreq>
+            <priority>0.5</priority>
+          </url>
+    
+  
+    
+      <url>
+            <loc>http://example.org/categories/</loc>
+            <changefreq>daily</changefreq>
+            <priority>0.5</priority>
+            <xhtml:link
+              rel="alternate"
+              hreflang="en"
+              href="http://example.org/en/categories/"
+              />
+            <xhtml:link
+              rel="alternate"
+              hreflang="es"
+              href="http://example.org/categories/"
+              />
+          </url>
+    
+  
+    
+      <url>
+            <loc>http://example.org/tags/</loc>
+            <changefreq>daily</changefreq>
+            <priority>0.5</priority>
+            <xhtml:link
+              rel="alternate"
+              hreflang="en"
+              href="http://example.org/en/tags/"
+              />
+            <xhtml:link
+              rel="alternate"
+              hreflang="es"
+              href="http://example.org/tags/"
+              />
+          </url>
+    
+  
+</urlset>
