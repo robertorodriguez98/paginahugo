@@ -5,7 +5,7 @@ isoCode = "es"
 weight = 1
 rtl = false
 
-title = "paginota"
+title = "Practica IAW"
 logo = "img/blowfish_logo_transparent.png"
 description = "My awesome website"
 # copyright = "Copy, _right?_ :thinking_face:"
@@ -13,9 +13,9 @@ description = "My awesome website"
 dateFormat = "2 de January de 2006"
 
 [author]
-  name = "YO"
+  name = "Roberto Rodríguez Márquez"
   image = "img/blowfish_logo.png"
-  headline = "I'm only human"
+  headline = "Estudiante de 2º de ASIR"
   bio = "A little bit about you"
   # links = [
   #   { email = "mailto:hello@your_domain.com" },

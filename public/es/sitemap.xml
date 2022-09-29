@@ -41,6 +41,15 @@
   
     
       <url>
+            <loc>http://example.org/posts/prueba1/</loc>
+            <lastmod>2022-09-28T01:21:03+02:00</lastmod>
+            <changefreq>daily</changefreq>
+            <priority>0.5</priority>
+          </url>
+    
+  
+    
+      <url>
             <loc>http://example.org/categories/</loc>
             <changefreq>daily</changefreq>
             <priority>0.5</priority>
