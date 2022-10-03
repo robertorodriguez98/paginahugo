@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Índice de pruebas on Practica IAW</title>
+    <title>Índice on Practica IAW</title>
     <link>http://example.org/</link>
-    <description>Recent content in Índice de pruebas on Practica IAW</description>
+    <description>Recent content in Índice on Practica IAW</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es</language>
-    <lastBuildDate>Wed, 28 Sep 2022 01:21:03 +0200</lastBuildDate><atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 29 Sep 2022 12:23:20 +0200</lastBuildDate><atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>My First Post</title>
-      <link>http://example.org/posts/my-first-post/</link>
-      <pubDate>Wed, 28 Sep 2022 01:21:03 +0200</pubDate>
+      <title>Ejemplo MarkDown</title>
+      <link>http://example.org/posts/ejemplo_markdown/</link>
+      <pubDate>Thu, 29 Sep 2022 12:23:20 +0200</pubDate>
       
-      <guid>http://example.org/posts/my-first-post/</guid>
-      <description>Hola buenos dias este es mi primer post tal # Cosas que voy a hacer
-primera cosa segunda cosa </description>
+      <guid>http://example.org/posts/ejemplo_markdown/</guid>
+      <description>Introducción a Markdown # Implantación de Aplicaciones Web # Este fichero está alojado en github; que es una forja (plataforma de desarrollo colaborativo) para alojar proyectos utilizando el sistema de control de versiones Git:</description>
     </item>
     
     <item>

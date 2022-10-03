@@ -1,4 +1,4 @@
 ---
-title: Índice de pruebas
+title: Índice
 description: Some description
 ---
