@@ -16,12 +16,12 @@
   weight = 10
 
 [[main]]
-  name = "Categories"
+  name = "Categorías"
   pageRef = "categories"
   weight = 20
 
 [[main]]
-  name = "Tags"
+  name = "Etiquetas"
   pageRef = "tags"
   weight = 30
 
@@ -32,11 +32,11 @@
 
 
  [[footer]]
-   name = "Tags"
+   name = "Etiquetas"
    pageRef = "tags"
    weight = 10
 
  [[footer]]
-   name = "Categories"
+   name = "Categorías"
    pageRef = "categories"
    weight = 20
