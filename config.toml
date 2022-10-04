@@ -1,4 +1,4 @@
-baseURL = 'http://example.org/'
+baseURL = 'http://blog-robertorodriguez.surge.sh/'
 languageCode = 'es'
 title = 'Pruebas'
 theme = "blowfish"
