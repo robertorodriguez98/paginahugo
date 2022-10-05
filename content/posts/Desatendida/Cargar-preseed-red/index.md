@@ -5,9 +5,9 @@ draft: false
 tags: ["Debian","Preseed"]
 ---
 
-# Carga del fichero `preseed.cfg` desde red
+# Carga del fichero preseed.cfg desde red
 
-## Configuración del servidor
+### Configuración del servidor
 Para la instalación desatendida cargando el `preseed` desde red, es necesario una máquina que haga el rol de servidor, teniendo un servidor `apache2` instalado. Para preparar dicha máquina seguimos los siguientes pasos: 
 
 1. Instalamos el servidor apache en la máquina:
@@ -18,7 +18,7 @@ $ apt upgrade && apt install apache2
 
 Tras este paso, el servidor ya está configurado y ofreciendo la configuración a la red.
 
-## Utilización desde el cliente
+### Utilización desde el cliente
 
 Para aplicar la configuración del fichero `preseed`, iniciamos la instalación de una imagen de debian sin modificar. Para utilizarla tenemos dos opciones:
 1. Utilizando línea de comandos:
