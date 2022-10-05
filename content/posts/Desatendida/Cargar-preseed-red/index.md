@@ -1,10 +1,12 @@
 ---
 title: "Cargar Preseed Red"
 date: 2022-10-05T13:45:46+02:00
-draft: true
+draft: false
+tags: ["Debian","Preseed"]
 ---
 
 # Carga del fichero `preseed.cfg` desde red
+
 ## Configuración del servidor
 Para la instalación desatendida cargando el `preseed` desde red, es necesario una máquina que haga el rol de servidor, teniendo un servidor `apache2` instalado. Para preparar dicha máquina seguimos los siguientes pasos: 
 
