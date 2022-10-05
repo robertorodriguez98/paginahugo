@@ -3,6 +3,7 @@ title: "Cargar Preseed Red"
 date: 2022-10-05T13:45:46+02:00
 draft: false
 tags: ["Debian","Preseed"]
+toc: true
 ---
 
 # Carga del fichero preseed.cfg desde red
