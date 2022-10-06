@@ -15,9 +15,9 @@ dateFormat = "2 de January de 2006"
 [author]
   name = "Roberto Rodríguez Márquez"
   image = "img/blowfish_logo.png"
-  headline = "Estudiante de 2º de asir"
-  bio = "A little bit about you"
-  # links = [
+  headline = "Estudiante de 2º de ASIR"
+  bio = "Estudiante de 2º de ASIR"
+   links = [
   #   { email = "mailto:hello@your_domain.com" },
   #   { link = "https://link-to-some-website.com/" },
   #   { amazon = "https://www.amazon.com/hz/wishlist/ls/wishlist-id" },
@@ -30,7 +30,7 @@ dateFormat = "2 de January de 2006"
   #   { facebook = "https://facebook.com/username" },
   #   { flickr = "https://www.flickr.com/photos/username/" },
   #   { foursquare = "https://foursquare.com/username" },
-  #   { github = "https://github.com/username" },
+     { github = "https://github.com/robertorodriguez98" },
   #   { gitlab = "https://gitlab.com/username" },
   #   { google = "https://www.google.com/" },
   #   { hashnode = "https://username.hashnode.dev" },
@@ -59,4 +59,4 @@ dateFormat = "2 de January de 2006"
   #   { twitter = "https://twitter.com/username" },
   #   { whatsapp = "https://wa.me/phone-number" },
   #   { youtube = "https://youtube.com/username" },
-  # ]
+   ]
