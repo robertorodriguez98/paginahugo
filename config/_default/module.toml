@@ -1,2 +1,6 @@
 [[imports]]
-path = "github.com/nunocoracao/blowfish"
+  path = "github.com/nunocoracao/blowfish"
+[hugoVersion]
+  extended = true
+  min = "0.87.0 "
+  max = "0.104.3"

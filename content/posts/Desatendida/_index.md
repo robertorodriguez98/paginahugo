@@ -1,4 +1,4 @@
 ---
-title: Instalación de debian desatendida
-description: Some description
+title: Instalación de Debian desatendida
+description: Artículos subidos a la página por orden de fecha
 ---

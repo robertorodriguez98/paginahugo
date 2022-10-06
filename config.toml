@@ -1,4 +1,0 @@
-baseURL = 'http://blog-robertorodriguez.surge.sh/'
-languageCode = 'es'
-title = 'paginahugo'
-theme = "blowfish"
