@@ -4,7 +4,7 @@ date: 2022-10-06T08:21:57+02:00
 draft: False
 ---
 
-# Carga del fichero `preseed.cfg` desde red
+# Carga del fichero preseed.cfg desde red
 ## Configuración del servidor
 Para la instalación desatendida cargando el `preseed` desde red, es necesario una máquina que haga el rol de servidor, teniendo un servidor `apache2` instalado. Para preparar dicha máquina seguimos los siguientes pasos: 
 
