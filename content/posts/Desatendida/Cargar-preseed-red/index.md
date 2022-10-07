@@ -22,14 +22,14 @@ Para aplicar la configuración del fichero `preseed`, iniciamos la instalación 
 1. Utilizando línea de comandos:
     1. Pulsamos la tecla ESC para abrir la línea de comandos
     2. Introducimos el siguiente comando para acceder al fichero, donde `IP servidor` es la ip de la máquina que tiene el servidor apache:
-    ```bash
-    boot: auto url=[IP servidor]/preseed.cfg
-    ```
+```bash
+boot: auto url=[IP servidor]/preseed.cfg
+```
 2. Utilizando las opciones avanzadas:
     1. Accedemos a opciones avanzadas en el menú, seguido de instalación automatizada. 
     2. Introducimos la ip del servidor con apache de la siguiente manera:
-    ```
-    http://[IP servidor]/preseed.cfg
-    ```
+```
+http://[IP servidor]/preseed.cfg
+```
 Tras esto, la instalación desatendida comenzará.
 	

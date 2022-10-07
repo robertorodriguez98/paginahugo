@@ -15,10 +15,10 @@ $ apt install dnsmasq
 ```
 2. configuramos el contenido del fichero /etc/dnsmasq.conf/:
 ```shell
-    dhcp-range=192.168.100.50,192.168.100.150,255.255.255.0,12h
-    dhcp-boot=pxelinux.0
-    enable-tftp
-    tftp-root=/srv/tftp
+dhcp-range=192.168.100.50,192.168.100.150,255.255.255.0,12h
+dhcp-boot=pxelinux.0
+enable-tftp
+tftp-root=/srv/tftp
 ```
 3. En el paso anterior especificamos que se utilizara el directorio /srv/tftp/ como raíz para la transmisión por pxe; vamos a crearlo:
 ```shell
@@ -58,6 +58,18 @@ $ nft -f /etc/nftables.conf
 ## Fichero Preseed
 
 Para añadir el fichero preseed, tenemos dos opciones. Añadirlo a los ficheros que se están distribuyendo a través de `PXE`, o utilizar un `servidor apache`, realizándose de la misma manera que en el paso anterior.
+
+Para utilizar el fichero `preseed.cfg` modificamos el fichero `txt.cfg` para que utilice el que estamos ofreciendo en el servidor apache:
+```shell
+label install
+	menu label ^Install
+	kernel debian-installer/amd64/linux
+	append vga=788 initrd=debian-installer/amd64/initrd.gz --- quiet 
+label unattended-gnome
+        menu label ^Instalacion Debian Desatendida Preseed
+        kernel debian-installer/amd64/linux
+        append vga=788 initrd=debian-installer/amd64/initrd.gz preseed/url=192.168.100.5/preseed.txt locale=es_ES console-setup/ask_detect=false keyboard-configuration/xkb-keymap=e>
+```
 
 # Lado del cliente
 

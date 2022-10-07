@@ -1,7 +1,8 @@
 ---
 title: "Creación Imagen"
-date: 2022-10-06T13:00:09+02:00
+date: 2022-10-06T7:00:09+02:00
 draft: false
+tags: ["Debian","preseed"]
 ---
 
 ## Descomprimimos la imagen
