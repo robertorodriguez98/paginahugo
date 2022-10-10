@@ -14,7 +14,8 @@ dateFormat = "2 de January de 2006"
 
 [author]
   name = "Roberto Rodríguez Márquez"
-  image = "img/blowfish_logo.png"
+  # image = "img/blowfish_logo.png"
+  image = "img/foto.jpg"
   headline = "Estudiante de 2º de ASIR"
   bio = "Estudiante de 2º de ASIR"
    links = [
