@@ -1,7 +1,7 @@
 ---
 title: "Envío de alertas de Snort utilizando postfix"
 date: 2022-10-14T13:53:06+02:00
-draft: true
+draft: false
 ---
 ## Postfix
 ### Instalación
