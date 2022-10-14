@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
 
-hugo -D
+hugo
 cp -r public/* ../fuente_blog
 surge ../fuente_blog
