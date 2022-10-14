@@ -4,13 +4,15 @@ date: 2022-10-14T13:53:06+02:00
 draft: false
 tags: ["postfix","snort"]
 ---
+
+En esta entrada vamos a configurar un servidor de correos postfix para poder monitorizar las alertas que da snort de manera remota. Para ello vamos a utilizar el servidor por medio del comando swatch, que se encargará de comprobar el log de snort.
+
 ## Postfix
 ### Instalación
 Antes de iniciar la instalación tenemos que comprobar el nombre de nuestra máquina, con el comando
 ```bash
 $ hostname
 ```
-
 Para instalar postfix previamente tenemos que instalar mailutils:
 ```bash
 $ sudo apt update
@@ -30,10 +32,14 @@ Tras eso reiniciamos el servicio
 ```bash
 $ sudo systemctl restart postfix
 ```
+{{< alert >}}
+Con la configuración actual, no podemos enviar correos a una dirección de correo habitual (gmail, hotmail..) ya que nuestro servidor postfix no tiene **autentificación SASL** ni **encriptación SLS**, por lo que los proveedores de correo lo rechazan automáticamente.
+{{< /alert >}}
 
-Para comprobar que funciona podemos enviar un correo de prueba. Con la configuración actual, no podemos enviarlo a una dirección convencional (gmail, hotmail ...) ya que nuestra dirección de correo (usuario@hostname) no tiene un nombre de dominio completo (FQDM). Para el ejemplo, podemos enviarlo a un correo temporal como [este](https://temp-mail.org/es/).
+Para comprobar que funciona podemos enviar un correo de prueba. Para el ejemplo, vamos a enviarlo a un correo temporal como [este](https://temp-mail.org/es/), ya que no realiza las mismas comprobaciones que gmail.
 
 Enviamos el correo con el siguiente comando:
 ```bash
 $ echo "Cuerpo del mensaje" | mail -s "Asunto del mensaje" correoelectronico
 ```
+![muestra correo temporal](prueba_correo.png)
