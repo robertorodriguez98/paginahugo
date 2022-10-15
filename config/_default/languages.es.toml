@@ -5,7 +5,7 @@ isoCode = "es"
 weight = 1
 rtl = false
 
-title = "Página IAW"
+title = "Blog Roberto Rodríguez"
 logo = "img/blowfish_logo_transparent.png"
 description = "My awesome website"
 # copyright = "Copy, _right?_ :thinking_face:"
@@ -39,7 +39,7 @@ dateFormat = "2 de January de 2006"
   #   { keybase = "https://keybase.io/username" },
   #   { kickstarter = "https://www.kickstarter.com/profile/username" },
   #   { lastfm = "https://lastfm.com/user/username" },
-  #   { linkedin = "https://linkedin.com/in/username" },
+     { linkedin = "https://www.linkedin.com/in/roberto-rodr%C3%ADguez-m%C3%A1rquez-aa9212140/" },
   #   { mastodon = "https://mastodon.instance/@username" },
   #   { medium = "https://medium.com/username" },
   #   { microsoft = "https://www.microsoft.com/" },

@@ -19,7 +19,7 @@ $ sudo apt update
 $ sudo apt install mailutils
 $ sudo apt install postfix
 ```
-Tras la instalación de postfix, Se inciará un setup. En él seleccionamos *Internet site*, la opción por defecto. En el siguiente paso, si no está ya, introducimos el nombre de la máquina que consultamos antes. 
+Tras la instalación de postfix, Se inciará un setup. En él seleccionamos **Internet site**, la opción por defecto. En el siguiente paso, si no está ya, introducimos el nombre de la máquina que consultamos antes. 
 
 ### Configuración
 
@@ -43,3 +43,8 @@ Enviamos el correo con el siguiente comando:
 $ echo "Cuerpo del mensaje" | mail -s "Asunto del mensaje" correoelectronico
 ```
 ![muestra correo temporal](prueba_correo.png)
+{{< alert "search" >}}
+Para más información:
+[instalación postfix](https://netcorecloud.com/tutorials/install-postfix-as-send-only-smtp-server/),
+[SASL y SLS](https://souptonuts.sourceforge.net/postfix_tutorial.html)
+{{< /alert >}}
