@@ -72,3 +72,8 @@ apt show keyboard-configuration
 ```
 
 las arquitecturas están en la página de debian
+/etc/apt/preferences
+getselections
+dpkg --info mdadm
+apt clean
+![pruebagif](pruebagif.gif)

@@ -21,3 +21,6 @@ buildFuture = false
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
+[module]
+  [[module.imports]]
+    path = "cj.rs/gohugo-asciinema"
