@@ -73,12 +73,18 @@ sudo make install
 sudo make clean
 ```
 
+{{< alert >}}
+Para generar el fichero `.deb` es **necesario** que el paquete descargado sea con `apt source`, o la versión específica de debian.
+{{< /alert >}}
+
 o bien, para generar el fichero .deb:
 
 instalamos las siguientes dependencias:
 
 ```bash
 sudo apt install libnl-3-dev libnl-genl-3-dev libsensors-dev pkg-config debhelper-compat
+# o bien con apt-get build-dep
+sudo apt-get build-dep htop
 ```
 
 ```bash
