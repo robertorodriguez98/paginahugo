@@ -77,3 +77,14 @@ getselections
 dpkg --info mdadm
 apt clean
 ![pruebagif](pruebagif.gif)
+
+
+
+
+## KERNEL
+
+```bash
+sudo apt-source install linuxsource=5.19.11-1 
+
+sudo apt install --simulate build-essential flex bison openssl libssl-deb dkms libncurses-dev ncurses-dev qtbase5-deb libelf-dev
+```
