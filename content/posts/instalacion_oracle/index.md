@@ -1,11 +1,11 @@
 ---
-title: "Instalación Oracle 21c en Rocky linux 8"
+title: "Instalación Oracle 19c en Rocky linux 8"
 date: 2022-10-26T08:33:15+02:00
 draft: false
 tags: ["oracle","rocky"]
 ---
 
-Se va a realizar la instalación de Oracle 21c en Rocky linux 8, debido a su mayor compatibilidad con el programa y menor número de fallos que con Debian 11.
+Se va a realizar la instalación de Oracle 19c en Rocky linux 8, debido a su mayor compatibilidad con el programa y menor número de fallos que con Debian 11.
 
 ## Pasos previos
 
@@ -21,73 +21,19 @@ dnf update -y
 Si al ejecutarlo se actualiza el **kernel**, deberíamos reiniciar la máquina.
 {{< /alert >}}
 
-instalamos los prerrequisistos:
+como indica la [documentación](https://docs.oracle.com/en/database/oracle/oracle-database/19/ladbi/running-rpm-packages-to-install-oracle-database.html#GUID-BB7C11E3-D385-4A2F-9EAF-75F4F0AACF02), instalamos los requisitos previos. Sin embargo, al no estar en centos 7, tenemos que instalar manualmente unos paquetes
 
 ```bash
 dnf install -y bc binutils compat-openssl10 elfutils-libelf glibc glibc-devel ksh libaio libXrender libX11 libXau libXi libXtst libgcc libnsl libstdc++ libxcb libibverbs make policycoreutils policycoreutils-python-utils smartmontools sysstat libnsl2 net-tools nfs-utils unzip
+dnf install -y http://mirror.centos.org/centos/7/os/x86_64/Packages/compat-libcap1-1.10-7.el7.x86_64.rpm
+dnf install -y http://mirror.centos.org/centos/7/os/x86_64/Packages/compat-libstdc++-33-3.2.3-72.el7.x86_64.rpm
 ```
 
-creamos grupos y usuarios:
+Después descargamos los requisitos previos y los instalamos:
 
 ```bash
-groupadd -g 1501 oinstall
-groupadd -g 1502 dba
-groupadd -g 1503 oper
-groupadd -g 1504 backupdba
-groupadd -g 1505 dgdba
-groupadd -g 1506 kmdba
-groupadd -g 1507 racdba
-useradd -u 1501 -g oinstall -G dba,oper,backupdba,dgdba,kmdba,racdba oracle
-echo "oracle" | passwd oracle --stdin
-```
-
-Ahora tenemos que crear dos ficheros de configuración:
-
-1. creamos el fichero `/etc/security/limits.d/30-oracle.conf`, con el siguiente contenido:
-
-{{< highlight bash "linenos=table" >}}
-oracle   soft   nofile   1024
-oracle   hard   nofile   65536
-oracle   soft   nproc    16384
-oracle   hard   nproc    16384
-oracle   soft   stack    10240
-oracle   hard   stack    32768
-oracle   hard   memlock  134217728
-oracle   soft   memlock  134217728
-oracle   soft   data     unlimited
-oracle   hard   data     unlimited
-{{< / highlight >}}
-
-2. creamos el fichero `/etc/sysctl.d/98-oracle.conf`, con el siguiente contenido
-
-{{< highlight bash "linenos=table" >}}
-fs.file-max = 6815744
-kernel.sem = 250 32000 100 128
-kernel.shmmni = 4096
-kernel.shmall = 1073741824
-kernel.shmmax = 4398046511104
-kernel.panic_on_oops = 1
-net.core.rmem_default = 262144
-net.core.rmem_max = 4194304
-net.core.wmem_default = 262144
-net.core.wmem_max = 1048576
-net.ipv4.conf.all.rp_filter = 2
-net.ipv4.conf.default.rp_filter = 2
-fs.aio-max-nr = 1048576
-net.ipv4.ip_local_port_range = 9000 65500
-{{< / highlight >}}
-
-Recargamos los parámetros del kernel con **sysctl**:
-
-```bash
-sysctl -p
-```
-
-configuramos el **target mode** de SELinux a permisivo:
-
-```bash
-sed -i 's/^SELINUX=.*/SELINUX=permissive/g' /etc/selinux/config
-setenforce permissive
+curl -o oracle-database-preinstall-19c-1.0-1.el7.x86_64.rpm https://yum.oracle.com/repo/OracleLinux/OL7/latest/x86_64/getPackage/oracle-database-preinstall-19c-1.0-1.el7.x86_64.rpm
+yum -y localinstall oracle-database-preinstall-19c-1.0-1.el7.x86_64.rpm
 ```
 
 Configuramos el firewall
@@ -97,88 +43,47 @@ firewall-cmd --permanent --add-port=1521/tcp
 firewall-cmd --reload
 ```
 
-Creamos los directorios necesarios:
+configuramos el **target mode** de SELinux a permisivo:
 
 ```bash
-mkdir -p /u01/app/oracle/product/21.3.0/dbhome_1
-mkdir -p /u02/oradata
-chown -R oracle:oinstall /u01 /u02
-chmod -R 775 /u01 /u02
-```
-
-Configuramos el entorno del usuario: Entramos como el usuario **oracle**
-
-```bash
-su oracle
-```
-
-Y añadimos al fichero `~/.bashrc` la configuración para tener las variables de entorno:
-
-{{< highlight bash "linenos=table" >}}
-# Oracle Settings
-export TMP=/tmp
-export TMPDIR=$TMP
-
-export ORACLE_HOSTNAME=oracle-02.centlinux.com
-export ORACLE_UNQNAME=cdb1
-export ORACLE_BASE=/u01/app/oracle
-export ORACLE_HOME=$ORACLE_BASE/product/21.3.0/dbhome_1
-export ORA_INVENTORY=/u01/app/oraInventory
-export ORACLE_SID=cdb1
-export PDB_NAME=pdb1
-export DATA_DIR=/u02/oradata
-
-export PATH=$ORACLE_HOME/bin:$PATH
-
-export LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib
-export CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib
-{{< / highlight >}}
-
-Podemos recargar la configuración con el siguiente comando:
-
-```bash
-source ~/.bashrc
+sed -i 's/^SELINUX=.*/SELINUX=permissive/g' /etc/selinux/config
+setenforce permissive
 ```
 
 ## Instalación
 
-Ahora tenemos que descargar oracle. Para descargarlo tenemos que ir a la [página de descargas de oracle](https://www.oracle.com/database/technologies/oracle-database-software-downloads.html) y buscamos en el apartado de Oracle 21c, el zip de Linux:
+Ahora descargamos el paquete rpm de la [página oficial de oracle](https://www.oracle.com/es/database/technologies/oracle19c-linux-downloads.html):
+
 ![descarga](descarga.png)
 
-Una vez descargado, descomprimimos el fichero en el directorio que establecimos previamente como  `$ORACLE_HOME`:
-
 ```bash
-unzip LINUX.X64_213000_db_home.zip -d $ORACLE_HOME
+yum -y localinstall oracle-database-ee-19c-1.0-1.x86_64.rpm 
 ```
-
-Ahora nos desplazamos al directorio y ejecutamos el script de instalación:
-
-{{< highlight bash >}}
-cd $ORACLE_HOME
-./runInstaller -ignorePrereq -waitforcompletion -silent \
-oracle.install.option=INSTALL_DB_SWONLY \
-ORACLE_HOSTNAME=${ORACLE_HOSTNAME} \
-UNIX_GROUP_NAME=oinstall \
-INVENTORY_LOCATION=${ORA_INVENTORY} \
-ORACLE_HOME=${ORACLE_HOME} \
-ORACLE_BASE=${ORACLE_BASE} \
-oracle.install.db.InstallEdition=EE \
-oracle.install.db.OSDBA_GROUP=dba \
-oracle.install.db.OSBACKUPDBA_GROUP=backupdba \
-oracle.install.db.OSDGDBA_GROUP=dgdba \
-oracle.install.db.OSKMDBA_GROUP=kmdba \
-oracle.install.db.OSRACDBA_GROUP=racdba \
-SECURITY_UPDATES_VIA_MYORACLESUPPORT=false \
-DECLINE_SECURITY_UPDATES=true
-{{< / highlight >}}
 
 ![instalacion](instalacion.png)
 
-Ahora ejecutamos como **root** los scripts de post-instalación:
+Como nos indica al final de la instalación, creamos la base de datos de pruebas ejecutando el siguiente script:
 
 ```bash
-/u01/app/oraInventory/orainstRoot.sh
-/u01/app/oracle/product/21.3.0/dbhome_1/root.sh
+/etc/init.d/oracledb_ORCLCDB-19c configure
+```
+
+![script](script.png)
+
+Tras la ejecución, tenemos que iniciar sesión con el usuario **oracle** que se ha creado durante la misma, Y añadirle las siguientes variables al fichero `.bash_profile`
+
+{{< highlight bash "linenos=table" >}}
+umask 022
+export ORACLE_SID=ORCLCDB
+export ORACLE_BASE=/opt/oracle/oradata
+export ORACLE_HOME=/opt/oracle/product/19c/dbhome_1
+export PATH=$PATH:$ORACLE_HOME/bin
+{{< / highlight >}}
+
+Recargamos el fichero para que las variables tengan efecto:
+
+```bash
+source ~/.bash_profile
 ```
 
 Tras este paso ya está instalado **oracle**, Ahora sigue crear la base de datos. Primero activamos el listener:
@@ -186,37 +91,6 @@ Tras este paso ya está instalado **oracle**, Ahora sigue crear la base de datos
 ```bash
 lsnrctl start
 ```
-
-Y creamos la base de datos con el comando `dbca` con los siguientes parámetros:
-
-```bash
-dbca -silent -createDatabase \
--templateName General_Purpose.dbc \
--gdbname ${ORACLE_SID} \
--sid ${ORACLE_SID} \
--responseFile NO_VALUE \
--characterSet AL32UTF8 \
--sysPassword contra \
--systemPassword contra \
--createAsContainerDatabase true \
--numberOfPDBs 1 \
--pdbName ${PDB_NAME} \
--pdbAdminPassword contra \
--databaseType MULTIPURPOSE \
--automaticMemoryManagement false \
--totalMemory 800 \
--storageType FS \
--datafileDestination "${DATA_DIR}" \
--redoLogFileSize 50 \
--emConfiguration NONE \
--ignorePreReqs
-```
-
-![creacionbd](creacionbd.png)
-
-{{< alert "circle-info" >}}
-Las alertas que aparecen se deben a la poca seguridad de la contraseña que he elegido (en este caso **contra**, no tienen nada que ver con problemas durante la instalación
-{{< /alert >}}
 
 Para facilitar la utilización de `sqlplus` vamos a instalar el paquete `rlwrap`, que permite que utilicemos el cursor, tanto para desplazarnos por las líneas como para rescatar comandos.
 
@@ -226,6 +100,7 @@ dnf install rlwrap -y
 ```
 
 ahora creamos el siguiente alias en `~/.bashrc`:
+
 ```bash
 alias sqlplus='rlwrap sqlplus'
 ```
@@ -238,19 +113,13 @@ Primero nos conectamos a la base de datos como **sysdba**:
 sqlplus / as sysdba
 ```
 
+y podemos comprobar la versión de oracle con la siguiente consulta:
+
+```sql
+SELECT instance_name, host_name, version, startup_time FROM v$instance;
+```
+
 ![versionora](versionora.png)
-
-Podemos comprobar la versión de oracle que tenemos instalada. Una vez dentro, activamos el modo **Oracle Managed File** para que oarcle no sea capaz de modificar archivos del sistema anfitrión:
-
-```sql
-ALTER SYSTEM SET DB_CREATE_FILE_DEST='/u02/oradata' SCOPE=BOTH;
-```
-
-Activamos el **autostart**:
-
-```sql
-ALTER PLUGGABLE DATABASE PDB1 SAVE STATE;
-```
 
 ### Creación de usuario con privilegios
 
